@@ -14,9 +14,10 @@ pipeline {
         }
         stage('Development'){
             steps {
-		sh 'sudo mkdir /var/www/html/dev'
-                sh 'sudo rm -rf /var/www/html/dev/*'
+		sh 'sudo rm -rf /var/www/html/dev/*'
                 sh 'sudo rm -rf /var/www/html/dev/.git'
+		sh 'sudo rm -rf /var/www/html/dev'
+		sh 'sudo mkdir /var/www/html/dev'
                 sh 'sudo systemctl start httpd'
                 sh 'sudo git clone https://github.com/nnsnarasimha/jendcltv.git /var/html/dev'
             }
@@ -26,6 +27,8 @@ pipeline {
 		sh 'sudo mkdir /var/www/html/qa'	
                 sh 'sudo rm -rf /var/www/html/qa/*'
                 sh 'sudo rm -rf /var/www/html/qa/.git'
+                sh 'sudo rm -rf /var/www/html/dev'
+                sh 'sudo mkdir /var/www/html/dev'
                 sh 'sudo systemctl start httpd'
                 sh 'sudo git clone https://github.com/nnsnarasimha/jendcltv.git /var/www/html/qa'
             }
@@ -35,6 +38,8 @@ pipeline {
 		sh 'sudo mkdir /var/www/html/prod'
                 sh 'sudo rm -rf /var/www/html/pord/*'
                 sh 'sudo rm -rf /var/www/html/prod/.git'
+                sh 'sudo rm -rf /var/www/html/dev'
+                sh 'sudo mkdir /var/www/html/dev'
                 sh 'sudo systemctl start httpd'
                 sh 'sudo git clone https://github.com/nnsnarasimha/jendcltv.git /var/www/html/prod'
              }
